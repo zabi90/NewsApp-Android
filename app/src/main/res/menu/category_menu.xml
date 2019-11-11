@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/general"
+            android:checked="true"
+            android:title="@string/title_general" />
+
+
+        <item
+            android:id="@+id/business"
+            android:title="@string/title_business" />
+
+
+        <item
+            android:id="@+id/entertainment"
+            android:title="@string/title_entertainment" />
+
+
+        <item
+            android:id="@+id/health"
+            android:title="@string/title_health" />
+
+
+        <item
+            android:id="@+id/science"
+            android:title="@string/title_science" />
+        <item
+            android:id="@+id/sports"
+            android:title="@string/title_sports" />
+        <item
+            android:id="@+id/technology"
+            android:title="@string/title_technology" />
+    </group>
+</menu>
