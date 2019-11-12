@@ -14,7 +14,7 @@ import javax.inject.Named
 class NetworkModule {
 
     @Provides
-    fun getNewsService(@Named(RetrofitModule.PUBLIC_CLIENT) retrofit: Retrofit): NewsServices {
+    fun getNewsService(@Named(RetrofitModule.AUTH_CLIENT) retrofit: Retrofit): NewsServices {
        return retrofit.create(NewsServices::class.java)
     }
 

@@ -1,7 +1,6 @@
 package de.starkling.newsapp.rest.services
 
 import de.starkling.newsapp.rest.response.DataResponse
-import de.starkling.newsapp_android.BuildConfig
 import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Query
@@ -12,6 +11,6 @@ import retrofit2.http.Query
  */
 interface NewsServices {
 
-    @GET("top-headlines?apiKey=${BuildConfig.NEWS_API_KEY}")
+    @GET("top-headlines")
     suspend fun getNewsByCategory(@Query("category") category:String):Response<DataResponse>
 }

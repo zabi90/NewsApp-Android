@@ -4,40 +4,27 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.ImageView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
-import de.starkling.newsapp.rest.services.NewsServices
 import de.starkling.newsapp_android.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers.IO
-import kotlinx.coroutines.Dispatchers.Main
-import kotlinx.coroutines.launch
-import javax.inject.Inject
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
 
-    @Inject
-    lateinit var newsServices: NewsServices
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-         val application = application as AndroidApp
-
-        application.appComponent.inject(this)
-
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         navController = findNavController(R.id.nav_host_fragment)
 
         val appBarConfiguration = AppBarConfiguration(navController.graph, drawer_layout)
@@ -90,18 +77,18 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        CoroutineScope(IO).launch {
-            val response = newsServices.getNewsByCategory("general")
-
-            if(response.isSuccessful){
-
-                CoroutineScope(Main).launch {
-                    Toast.makeText(this@MainActivity,"Response ${response.body()}",Toast.LENGTH_LONG).show()
-                }
-            }
-
-
-        }
+//        CoroutineScope(IO).launch {
+//            val response = newsServices.getNewsByCategory("general")
+//
+//            if(response.isSuccessful){
+//
+//                CoroutineScope(Main).launch {
+//                    Toast.makeText(this@MainActivity,"Response ${response.body()}",Toast.LENGTH_LONG).show()
+//                }
+//            }
+//
+//
+//        }
 
 
     }

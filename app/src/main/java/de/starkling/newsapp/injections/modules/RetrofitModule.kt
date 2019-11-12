@@ -78,12 +78,12 @@ class RetrofitModule {
 
         client.addInterceptor { chain: Interceptor.Chain ->
 
-            val token = "d0fccc72c53845a9b26105a0d8c9abbe"
+            val token = "Bearer ${BuildConfig.NEWS_API_KEY}"
 
 
             val request: Request = chain.request()
                 .newBuilder()
-               // .addHeader("Authorization", token)
+                .addHeader("Authorization", token)
                 .build()
 
             chain.proceed(request)
