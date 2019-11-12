@@ -28,13 +28,15 @@ class HeadlineAdapter(context: Context) : BaseRecyclerAdapter<Article, HeadlineA
         fun bindItem(article: Article){
 
             itemView.titleTextView.text = article.title
-            itemView.descriptionTextView.text = article.description
-            itemView.authorTextView.text = "By ${article.author}"
             itemView.publishDateTextView.text = article.publishedAt
             itemView.sourceTextView.text = article.source?.name
 
             article.urlToImage?.let {
                 itemView.imageView.loadNetworkImage(itemView.progressBar,it)
+            }
+
+            itemView.setOnClickListener {
+                listener?.onItemSelected(article,adapterPosition,itemView.imageView)
             }
 
         }

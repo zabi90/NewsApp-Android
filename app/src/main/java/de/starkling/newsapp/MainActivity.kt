@@ -104,12 +104,4 @@ class MainActivity : AppCompatActivity() {
         return true
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            R.id.menu_search -> {
-                navController.navigate(R.id.action_homeFragment_to_searchFragment)
-            }
-        }
-        return true
-    }
 }

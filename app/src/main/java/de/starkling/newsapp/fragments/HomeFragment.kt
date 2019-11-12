@@ -3,20 +3,24 @@ package de.starkling.newsapp.fragments
 
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.FragmentNavigatorExtras
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.starkling.adapters.HeadlineAdapter
 import de.starkling.newsapp.base.BaseFragment
 import de.starkling.newsapp.extensions.showSnackBar
-import de.starkling.newsapp.extensions.toast
 import de.starkling.newsapp.injections.ViewModelFactory
+import de.starkling.newsapp.models.Article
 import de.starkling.newsapp.rest.response.Status
 import de.starkling.newsapp.viewmodels.HomeViewModel
 import de.starkling.newsapp_android.R
+import de.starkling.selectit.base.OnItemSelectListener
 import kotlinx.android.synthetic.main.fragment_home.*
 import javax.inject.Inject
 
@@ -30,7 +34,7 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var headlineAdapter: HeadlineAdapter
 
-    val args: HomeFragmentArgs by navArgs()
+   private val args: HomeFragmentArgs by navArgs()
 
     override fun inject() {
         component.inject(this)
@@ -53,6 +57,8 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        setHasOptionsMenu(true)
+
         context?.let {
 
             headlineAdapter = HeadlineAdapter(it)
@@ -60,6 +66,16 @@ class HomeFragment : BaseFragment() {
             recyclerView.layoutManager = LinearLayoutManager(it)
 
             recyclerView.adapter = headlineAdapter
+
+            headlineAdapter.addListener(object : OnItemSelectListener<Article> {
+                override fun onItemSelected(item: Article, position: Int, view: View) {
+
+                    val extras = FragmentNavigatorExtras(
+                        view to "imageView"
+                    )
+                    findNavController().navigate(HomeFragmentDirections.actionHomeFragmentToDetailFragment(item),extras)
+                }
+            })
         }
 
         loadNews()
@@ -69,6 +85,15 @@ class HomeFragment : BaseFragment() {
         }
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId) {
+            R.id.menu_search -> {
+                findNavController().navigate(R.id.action_homeFragment_to_searchFragment)
+            }
+        }
+        return true
+    }
     private fun loadNews() {
 
         viewModel.getHeadline()
