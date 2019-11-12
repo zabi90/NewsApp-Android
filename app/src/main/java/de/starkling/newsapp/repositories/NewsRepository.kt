@@ -1,5 +1,6 @@
 package de.starkling.newsapp.repositories
 
+import androidx.lifecycle.MutableLiveData
 import de.starkling.newsapp.base.BaseRepository
 import de.starkling.newsapp.rest.response.DataResponse
 import de.starkling.newsapp.rest.services.NewsServices
@@ -10,19 +11,15 @@ import de.starkling.newsapp.rest.services.NewsServices
  */
 class NewsRepository constructor(private val newsServices: NewsServices): BaseRepository() {
 
+    val newsHeadlineError by lazy {
+        MutableLiveData<String>()
+    }
+
     suspend fun getHeadlines(category: String): DataResponse? {
-
-        val response = newsServices.getNewsByCategory(category)
-
         try {
-            if (response.isSuccessful) {
-                return response.body()
-            }else{
-                response.errorBody()
-            }
-
+            return newsServices.getNewsByCategory(category)
         } catch (exception: Exception) {
-            onHandleError(exception)
+            newsHeadlineError.postValue(onHandleError(exception))
         }
         return null
     }

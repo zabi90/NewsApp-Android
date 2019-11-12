@@ -2,15 +2,17 @@ package de.starkling.newsapp.fragments
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.starkling.adapters.HeadlineAdapter
 import de.starkling.newsapp.base.BaseFragment
+import de.starkling.newsapp.extensions.showSnackBar
+import de.starkling.newsapp.extensions.toast
 import de.starkling.newsapp.injections.ViewModelFactory
 import de.starkling.newsapp.rest.response.Status
 import de.starkling.newsapp.viewmodels.HomeViewModel
@@ -24,9 +26,11 @@ class HomeFragment : BaseFragment() {
     @Inject
     lateinit var viewModelFactory: ViewModelFactory
 
-    lateinit var viewModel: HomeViewModel
+    private lateinit var viewModel: HomeViewModel
 
-    private lateinit var  headlineAdapter: HeadlineAdapter
+    private lateinit var headlineAdapter: HeadlineAdapter
+
+    val args: HomeFragmentArgs by navArgs()
 
     override fun inject() {
         component.inject(this)
@@ -35,7 +39,7 @@ class HomeFragment : BaseFragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         viewModel = ViewModelProviders.of(this, viewModelFactory)[HomeViewModel::class.java]
-
+        viewModel.currentCategory = args.category
     }
 
     override fun onCreateView(
@@ -65,17 +69,23 @@ class HomeFragment : BaseFragment() {
         }
     }
 
-    private fun loadNews(){
+    private fun loadNews() {
 
-        viewModel.getHeadline().observe(this, Observer {
-            when(it.status){
+        viewModel.getHeadline()
+
+        viewModel.newsHeadlineResponse.observe(this, Observer {
+
+            when (it.status) {
                 Status.SUCCESS -> {
                     headlineAdapter.setItems(it.data)
                     refreshLayout.isRefreshing = false
                 }
-
                 Status.LOADING -> refreshLayout.isRefreshing = true
             }
+        })
+
+        viewModel.newsHeadlineError.observe(this, Observer {
+            showSnackBar(it)
         })
     }
 

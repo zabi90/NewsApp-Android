@@ -6,18 +6,24 @@ import android.view.MenuItem
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
+import androidx.core.view.children
+import androidx.lifecycle.ViewModelStore
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import de.starkling.newsapp.fragments.HomeFragment
+import de.starkling.newsapp.fragments.HomeFragmentArgs
+import de.starkling.newsapp.fragments.HomeFragmentDirections
+import de.starkling.newsapp.models.Categories
+import de.starkling.newsapp.viewmodels.HomeViewModel
 import de.starkling.newsapp_android.R
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var navController: NavController
-
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,32 +35,46 @@ class MainActivity : AppCompatActivity() {
 
         val appBarConfiguration = AppBarConfiguration(navController.graph, drawer_layout)
         toolbar.setupWithNavController(navController, appBarConfiguration)
-        navigation_view.setupWithNavController(navController)
 
-        navigation_view.setNavigationItemSelectedListener {
+        navigation_view.setNavigationItemSelectedListener { menuItem ->
 
-            when (it.itemId) {
+            when (menuItem.itemId) {
 
                 R.id.general -> {
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.GENERAL.getValue())
+                    navController.navigate(action)
 
                 }
                 R.id.business -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.BUSINESS.getValue())
+                    navController.navigate(action)
                 }
                 R.id.science -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.SCIENCE.getValue())
+                    navController.navigate(action)
                 }
                 R.id.technology -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.TECHNOLOGY.getValue())
+                    navController.navigate(action)
                 }
                 R.id.health -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.HEALTH.getValue())
+                    navController.navigate(action)
                 }
                 R.id.entertainment -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.ENTERTAINMENT.getValue())
+                    navController.navigate(action)
                 }
                 R.id.sports -> {
-
+                    val action =
+                        HomeFragmentDirections.actionHomeFragmentSelf(Categories.SPORTS.getValue())
+                    navController.navigate(action)
                 }
             }
             drawer_layout.closeDrawer(GravityCompat.START, true)
@@ -76,23 +96,7 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-
-//        CoroutineScope(IO).launch {
-//            val response = newsServices.getNewsByCategory("general")
-//
-//            if(response.isSuccessful){
-//
-//                CoroutineScope(Main).launch {
-//                    Toast.makeText(this@MainActivity,"Response ${response.body()}",Toast.LENGTH_LONG).show()
-//                }
-//            }
-//
-//
-//        }
-
-
     }
-
 
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

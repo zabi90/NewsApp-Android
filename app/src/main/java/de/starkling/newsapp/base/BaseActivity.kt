@@ -2,13 +2,10 @@ package de.starkling.newsapp.base
 
 
 import android.app.Activity
-import android.graphics.Color
 import android.os.Bundle
 import android.view.MenuItem
 import android.widget.TextView
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.textfield.TextInputLayout
 import de.starkling.newsapp.AndroidApp
 
@@ -45,14 +42,6 @@ abstract class BaseActivity : AppCompatActivity() {
     }
 
 
-    fun Activity.toast(message: String) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    fun Activity.toast(msgId: Int) {
-        Toast.makeText(this, getString(msgId), Toast.LENGTH_SHORT).show()
-    }
-
 
     fun TextInputLayout.getText(): String {
         return editText?.text.toString()
@@ -62,10 +51,5 @@ abstract class BaseActivity : AppCompatActivity() {
         editText?.setText(text, TextView.BufferType.EDITABLE)
     }
 
-    fun showSnackBar(restId: Int, color: Int = Color.BLACK) {
-        val snackBar = Snackbar.make(window.decorView.rootView, restId, Snackbar.LENGTH_LONG)
-        snackBar.view.setBackgroundColor(color)
-        snackBar.show()
-    }
 
 }
