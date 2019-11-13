@@ -11,5 +11,9 @@ import retrofit2.http.Query
 interface NewsServices {
 
     @GET("top-headlines?country=us")
-    suspend fun getNewsByCategory(@Query("category") category:String):DataResponse
+    suspend fun getNewsByCategory(
+        @Query("category") category: String,
+        @Query("pageSize") pageSize: Int = 20,
+        @Query("country") country: String = "us"
+    ): DataResponse
 }

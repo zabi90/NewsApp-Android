@@ -7,19 +7,24 @@ import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.children
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelStore
 import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupWithNavController
+import androidx.work.*
+import de.starkling.newsapp.extensions.toast
 import de.starkling.newsapp.fragments.HomeFragment
 import de.starkling.newsapp.fragments.HomeFragmentArgs
 import de.starkling.newsapp.fragments.HomeFragmentDirections
 import de.starkling.newsapp.models.Categories
+import de.starkling.newsapp.syncronization.SyncArticleWorker
 import de.starkling.newsapp.viewmodels.HomeViewModel
 import de.starkling.newsapp_android.R
 import kotlinx.android.synthetic.main.activity_main.*
+import java.util.concurrent.TimeUnit
 
 class MainActivity : AppCompatActivity() {
 
@@ -96,6 +101,37 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
+
+        val constraints = Constraints.Builder()
+            .setRequiredNetworkType(NetworkType.CONNECTED)
+            .setRequiresStorageNotLow(true)
+            .build()
+
+        val syncWork = PeriodicWorkRequestBuilder<SyncArticleWorker>(10, TimeUnit.MINUTES)
+            .setConstraints(constraints)
+            .build()
+
+        val workManager = WorkManager.getInstance(applicationContext)
+        workManager.enqueue(syncWork)
+
+        workManager.getWorkInfoByIdLiveData(syncWork.id).observe(this, Observer { workInfo->
+            if (workInfo != null && workInfo.state == WorkInfo.State.SUCCEEDED) {
+                toast("New Update available")
+            }
+            if (workInfo != null && workInfo.state == WorkInfo.State.RUNNING) {
+                toast("RUNNING")
+            }
+            if (workInfo != null && workInfo.state == WorkInfo.State.CANCELLED) {
+                toast("CANCELLED")
+            }
+            if (workInfo != null && workInfo.state == WorkInfo.State.BLOCKED) {
+                toast("BLOCKED")
+            }
+            if (workInfo != null && workInfo.state == WorkInfo.State.ENQUEUED) {
+                toast("ENQUEUED")
+            }
+        })
+
     }
 
 

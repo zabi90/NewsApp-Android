@@ -12,6 +12,7 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.RequestOptions
 import com.bumptech.glide.request.target.Target
 import de.starkling.newsapp.injections.modules.GlideApp
+import de.starkling.newsapp_android.R
 
 
 /**
@@ -27,6 +28,7 @@ fun ImageView.loadNetworkImage(progressBar: ProgressBar? = null, url: String) {
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .apply(RequestOptions().timeout(60 * 1000))
         .transition(DrawableTransitionOptions.withCrossFade())
+        .error(R.drawable.logo)
         .addListener(object : RequestListener<Drawable> {
 
             override fun onLoadFailed(

@@ -1,10 +1,11 @@
 package de.starkling.newsapp.repositories
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import de.starkling.newsapp.base.BaseRepository
 import de.starkling.newsapp.database.AppDataBase
+import de.starkling.newsapp.injections.AppContext
 import de.starkling.newsapp.models.Article
-import de.starkling.newsapp.rest.response.DataResponse
 import de.starkling.newsapp.rest.services.NewsServices
 
 /**
@@ -12,6 +13,7 @@ import de.starkling.newsapp.rest.services.NewsServices
  * Copyright © 2019 Starkling. All rights reserved.
  */
 class NewsRepository constructor(
+    @AppContext context:Context,
     private val newsServices: NewsServices,
     private val appDataBase: AppDataBase
 ) : BaseRepository() {
@@ -19,6 +21,7 @@ class NewsRepository constructor(
     val newsHeadlineError by lazy {
         MutableLiveData<String>()
     }
+
 
     suspend fun getHeadlines(category: String): List<Article>? {
         try {

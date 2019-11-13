@@ -1,15 +1,12 @@
 package de.starkling.newsapp.database
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Query
-import androidx.room.Transaction
+import androidx.room.*
 import de.starkling.newsapp.models.Article
 
 @Dao
 abstract class ArticleDao {
 
-    @Insert
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     abstract suspend fun insertAll(articles: List<Article>) : Array<Long>
 
     @Transaction

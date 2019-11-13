@@ -16,7 +16,7 @@ class DataModule {
     fun getDatabase(@AppContext context:Context): AppDataBase {
         return  Room.databaseBuilder(
             context,
-            AppDataBase::class.java, "news_app"
+            AppDataBase::class.java, AppDataBase.DATABASE_NAME
         ).build()
     }
 }
