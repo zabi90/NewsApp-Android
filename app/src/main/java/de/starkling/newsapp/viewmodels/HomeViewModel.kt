@@ -39,10 +39,9 @@ class HomeViewModel @Inject constructor(private val newsRepository: NewsReposito
             currentNewsHeadlineJob?.cancel()
 
             currentNewsHeadlineJob = viewModelScope.launch {
-                val dataResponse = newsRepository.getHeadlines(currentCategory)
-                newsHeadlineResponse.value = ApiResponseResource.success(dataResponse?.articles)
+                val articles = newsRepository.getHeadlines(currentCategory)
+                newsHeadlineResponse.value = ApiResponseResource.success(articles)
             }
         }
-
     }
 }
