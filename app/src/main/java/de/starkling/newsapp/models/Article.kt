@@ -15,10 +15,9 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 @Entity
 data class Article(
-    @PrimaryKey(autoGenerate = true) val articleId: Int,
     @Embedded val source: Source?,
     val author: String?,
-    val title: String?,
+    @PrimaryKey val title: String,
     val description: String?,
     val url: String?,
     val urlToImage: String?,
