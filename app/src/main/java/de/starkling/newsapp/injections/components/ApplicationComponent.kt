@@ -2,6 +2,7 @@ package de.starkling.newsapp.injections.components
 
 import dagger.Component
 import de.starkling.newsapp.AndroidApp
+import de.starkling.newsapp.MainActivity
 import de.starkling.newsapp.fragments.HomeFragment
 import de.starkling.newsapp.fragments.SearchFragment
 import de.starkling.newsapp.injections.modules.*
@@ -21,4 +22,5 @@ interface ApplicationComponent {
 
     fun inject(searchFragment: SearchFragment)
 
+    fun inject(mainActivity: MainActivity)
 }

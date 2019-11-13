@@ -4,6 +4,7 @@ import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
+import com.airbnb.lottie.LottieAnimationView
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.load.engine.GlideException
@@ -20,7 +21,7 @@ import de.starkling.newsapp_android.R
  * Copyright © 2019 Starkling. All rights reserved.
  */
 
-fun ImageView.loadNetworkImage(progressBar: ProgressBar? = null, url: String) {
+fun ImageView.loadNetworkImage(progressBar: View? = null, url: String) {
 
     progressBar?.visibility = View.VISIBLE
 

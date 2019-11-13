@@ -13,14 +13,14 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="wrap_content"
-            android:layout_height="@dimen/_200sdp"
-            android:scaleType="centerCrop"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_150sdp"
+            android:transitionName="imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
-            android:transitionName="imageView"
+            android:scaleType="center"
             tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />
 
         <TextView
