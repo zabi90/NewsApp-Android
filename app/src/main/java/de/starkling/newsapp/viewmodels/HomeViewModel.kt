@@ -1,15 +1,15 @@
 package de.starkling.newsapp.viewmodels
 
-import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
+import androidx.paging.LivePagedListBuilder
+import androidx.paging.PagedList
+import androidx.paging.toLiveData
 import de.starkling.newsapp.base.BaseViewModel
 import de.starkling.newsapp.models.Article
 import de.starkling.newsapp.models.Categories
 import de.starkling.newsapp.repositories.NewsRepository
-import de.starkling.newsapp.rest.ApiResponseResource
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 /**
@@ -21,27 +21,30 @@ class HomeViewModel @Inject constructor(private val newsRepository: NewsReposito
 
     var currentCategory = Categories.GENERAL.getValue()
 
-    val newsHeadlineResponse by lazy {
-        MutableLiveData<ApiResponseResource<List<Article>?>>()
+
+    private var config : PagedList.Config = PagedList.Config.Builder()
+       .setPageSize(10)
+       .setEnablePlaceholders(true)
+       .build()
+
+    init {
+        initializedPagedListBuilder(config).build()
     }
 
     val newsHeadlineError = Transformations.map(newsRepository.newsHeadlineError) {
         return@map it
     }
 
-    private var currentNewsHeadlineJob: Job? = null
+    private fun initializedPagedListBuilder(config: PagedList.Config):
+            LivePagedListBuilder<Int, Article> {
 
-    fun getHeadline() {
 
-        if (newsHeadlineResponse.value?.data == null) {
-            newsHeadlineResponse.value = ApiResponseResource.loading()
+        return LivePagedListBuilder(
+            newsRepository.getArticleFromDatabase(currentCategory),
+            config).setBoundaryCallback(newsRepository.ArticleBoundaryCallback(viewModelScope,currentCategory))
+    }
 
-            currentNewsHeadlineJob?.cancel()
-
-            currentNewsHeadlineJob = viewModelScope.launch {
-                val articles = newsRepository.getHeadlines(currentCategory)
-                newsHeadlineResponse.value = ApiResponseResource.success(articles)
-            }
-        }
+    fun getHeadline(): LiveData<PagedList<Article>> {
+       return initializedPagedListBuilder(config).build()
     }
 }

@@ -32,12 +32,12 @@ class AppModule constructor(val app:AndroidApp) {
             .setRequiresStorageNotLow(true)
             .build()
 
-        val syncWork = PeriodicWorkRequestBuilder<SyncArticleWorker>(10, TimeUnit.MINUTES)
+        val syncWork = PeriodicWorkRequestBuilder<SyncArticleWorker>(30, TimeUnit.MINUTES)
             .setConstraints(constraints)
             .build()
 
         val workManager = WorkManager.getInstance(context)
-        workManager.enqueue(syncWork)
+        //workManager.enqueue(syncWork)
 
         return syncWork
     }

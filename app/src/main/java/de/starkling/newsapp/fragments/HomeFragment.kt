@@ -13,13 +13,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import de.starkling.adapters.HeadlineAdapter
 import de.starkling.newsapp.base.BaseFragment
 import de.starkling.newsapp.extensions.showSnackBar
 import de.starkling.newsapp.injections.ViewModelFactory
 import de.starkling.newsapp.models.Article
-import de.starkling.newsapp.rest.response.Status
 import de.starkling.newsapp.viewmodels.HomeViewModel
 import de.starkling.newsapp_android.R
 import de.starkling.selectit.base.OnItemSelectListener
@@ -34,7 +32,7 @@ class HomeFragment : BaseFragment() {
 
     private lateinit var viewModel: HomeViewModel
 
-    private lateinit var headlineAdapter: HeadlineAdapter
+    private val headlineAdapter: HeadlineAdapter = HeadlineAdapter()
 
    private val args: HomeFragmentArgs by navArgs()
 
@@ -52,6 +50,7 @@ class HomeFragment : BaseFragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        setHasOptionsMenu(true)
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_home, container, false)
     }
@@ -59,19 +58,14 @@ class HomeFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setHasOptionsMenu(true)
-
         context?.let {
 
-            headlineAdapter = HeadlineAdapter(it)
 
             recyclerView.layoutManager = LinearLayoutManager(it)
-
             recyclerView.adapter = headlineAdapter
             recyclerView.addItemDecoration(DividerItemDecoration(it,LinearLayoutManager.VERTICAL))
             headlineAdapter.addListener(object : OnItemSelectListener<Article> {
                 override fun onItemSelected(item: Article, position: Int, view: View) {
-
                     val extras = FragmentNavigatorExtras(
                         view to "imageView"
                     )
@@ -79,9 +73,7 @@ class HomeFragment : BaseFragment() {
                 }
             })
         }
-
         loadNews()
-
         refreshLayout.setOnRefreshListener {
             loadNews()
         }
@@ -97,18 +89,10 @@ class HomeFragment : BaseFragment() {
         return true
     }
     private fun loadNews() {
-
-        viewModel.getHeadline()
-
-        viewModel.newsHeadlineResponse.observe(this, Observer {
-
-            when (it.status) {
-                Status.SUCCESS -> {
-                    headlineAdapter.setItems(it.data)
-                    refreshLayout.isRefreshing = false
-                }
-                Status.LOADING -> refreshLayout.isRefreshing = true
-            }
+        refreshLayout.isRefreshing = true
+        viewModel.getHeadline().observe(this, Observer {
+            refreshLayout.isRefreshing = false
+            headlineAdapter.submitList(it)
         })
 
         viewModel.newsHeadlineError.observe(this, Observer {

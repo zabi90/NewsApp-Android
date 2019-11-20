@@ -1,5 +1,6 @@
 package de.starkling.newsapp.database
 
+import androidx.paging.DataSource
 import androidx.room.*
 import de.starkling.newsapp.models.Article
 
@@ -11,12 +12,12 @@ abstract class ArticleDao {
 
     @Transaction
     open suspend fun insertArticles(category:String,articles: List<Article>): Array<Long> {
-        delete(category)
+        //delete(category)
         return insertAll(articles)
     }
 
     @Query("Select * from article where category = :category")
-    abstract suspend fun getArticles(category:String):List<Article>
+    abstract  fun getArticles(category:String): DataSource.Factory<Int, Article>
 
     @Query("Delete from article where category  = :category ")
     abstract suspend fun delete(category:String)
