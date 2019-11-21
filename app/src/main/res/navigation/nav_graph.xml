@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/homeFragment"
-        android:name="de.starkling.newsapp.fragments.HomeFragment"
+        android:name="com.example.newsapp.fragments.HomeFragment"
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_searchFragment"
@@ -37,15 +37,15 @@
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
-        android:name="de.starkling.newsapp.fragments.SearchFragment"
+        android:name="com.example.newsapp.fragments.SearchFragment"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/detailFragment"
-        android:name="de.starkling.newsapp.fragments.DetailFragment"
+        android:name="com.example.newsapp.fragments.DetailFragment"
         tools:layout="@layout/fragment_detail">
         <argument
             android:name="article"
-            app:argType="de.starkling.newsapp.models.Article"
+            app:argType="com.example.newsapp.models.Article"
             app:nullable="true"
             android:defaultValue="@null" />
         <action
