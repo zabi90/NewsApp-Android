@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    tools:context="de.starkling.newsapp.fragments.DetailFragment">
+    tools:context="com.example.newsapp.fragments.DetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:paddingTop="@dimen/_45sdp"

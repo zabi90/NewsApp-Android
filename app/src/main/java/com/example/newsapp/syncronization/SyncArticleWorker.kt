@@ -58,9 +58,11 @@ class SyncArticleWorker(val context: Context, workerParams: WorkerParameters) :
                     "database insertion : category : ${category.getValue()} row added: ${result.size}"
                 )
             }
+            Log.d(TAG,"success")
             Result.success()
 
         } catch (error: Throwable) {
+            Log.d(TAG,"error : ${error.message}")
             Result.retry()
         }
     }

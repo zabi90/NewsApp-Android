@@ -1,28 +1,21 @@
 package com.example.newsapp.repositories
 
-import android.content.Context
+
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import com.example.newsapp.injections.AppContext
-
-
 import androidx.paging.DataSource
 import androidx.paging.PagedList
-
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Job
-import kotlinx.coroutines.launch
-import java.lang.Exception
-
 import com.example.newsapp.base.BaseRepository
 import com.example.newsapp.database.AppDataBase
 import com.example.newsapp.models.Article
 import com.example.newsapp.rest.services.NewsServices
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.launch
+import javax.inject.Inject
 
 
-
-class NewsRepository constructor(
-    @AppContext context: Context,
+class NewsRepository @Inject constructor(
     private val newsServices: NewsServices,
     private val appDataBase: AppDataBase
 ) : BaseRepository() {
@@ -30,13 +23,17 @@ class NewsRepository constructor(
     private var job: Job? = null
 
     val newsHeadlineError by lazy {
-        MutableLiveData<String>()
+        MutableLiveData<String?>()
     }
 
+    val newsLoadingStatus by lazy {
+        MutableLiveData<Boolean>()
+    }
     /**
      * Read articles from database
      */
     fun getArticleFromDatabase(category: String): DataSource.Factory<Int, Article> {
+        newsHeadlineError.postValue(null)
         return appDataBase.articleDao().getArticles(category)
     }
 
@@ -60,7 +57,6 @@ class NewsRepository constructor(
         private var category: String
     ) : PagedList.BoundaryCallback<Article>() {
 
-        private var isLoading = false
 
         override fun onZeroItemsLoaded() {
             super.onZeroItemsLoaded()
@@ -70,35 +66,20 @@ class NewsRepository constructor(
 
                 job = coroutineScope.launch {
                     try {
-                        val response = newsServices.getNewsByCategory(category, pageSize = 20, page = 1)
+                        newsLoadingStatus.postValue(true)
+                        val response = newsServices.getNewsByCategory(category, pageSize = 100)
                         insertArticleIntoDatabase(category, response.articles)
+                        newsLoadingStatus.postValue(false)
                     } catch (exception: Exception) {
+                        newsLoadingStatus.postValue(false)
                         newsHeadlineError.postValue(onHandleError(exception))
                     }
                 }
-
         }
 
         override fun onItemAtEndLoaded(itemAtEnd: Article) {
             super.onItemAtEndLoaded(itemAtEnd)
             Log.v(TAG, "onItemAtEndLoaded")
-
-            if(isLoading){
-                return
-            }
-
-            job = coroutineScope.launch {
-                try {
-                    Log.v(TAG, "onItemAtEndLoaded : launch")
-                    isLoading = true
-                    val response = newsServices.getNewsByCategory(category, pageSize = 20, page = 2)
-                    insertArticleIntoDatabase(category, response.articles)
-                    isLoading = false
-                } catch (exception: Exception) {
-                    isLoading = false
-                    newsHeadlineError.postValue(onHandleError(exception))
-                }
-            }
         }
 
     }

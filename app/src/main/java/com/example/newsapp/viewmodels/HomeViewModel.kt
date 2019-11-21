@@ -22,7 +22,7 @@ class HomeViewModel @Inject constructor(private val newsRepository: NewsReposito
 
     private var config : PagedList.Config = PagedList.Config.Builder()
        .setPageSize(10)
-       .setEnablePlaceholders(true)
+       .setEnablePlaceholders(false)
        .build()
 
     init {
@@ -32,6 +32,10 @@ class HomeViewModel @Inject constructor(private val newsRepository: NewsReposito
     val newsHeadlineError = Transformations.map(newsRepository.newsHeadlineError) {
         return@map it
     }
+    val newsLoadingStatus = Transformations.map(newsRepository.newsLoadingStatus) {
+        return@map it
+    }
+
 
     private fun initializedPagedListBuilder(config: PagedList.Config):
             LivePagedListBuilder<Int, Article> {

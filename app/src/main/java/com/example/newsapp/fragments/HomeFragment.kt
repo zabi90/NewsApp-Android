@@ -19,6 +19,7 @@ import com.example.newsapp.adapters.HeadlineAdapter
 import com.example.newsapp.base.BaseFragment
 import com.example.newsapp.base.OnItemSelectListener
 import com.example.newsapp.extensions.showSnackBar
+import com.example.newsapp.extensions.toast
 import com.example.newsapp.injections.ViewModelFactory
 import com.example.newsapp.models.Article
 import com.example.newsapp.viewmodels.HomeViewModel
@@ -92,15 +93,27 @@ class HomeFragment : BaseFragment() {
         return true
     }
     private fun loadNews() {
-        refreshLayout.isRefreshing = true
+
+
         viewModel.getHeadline().observe(this, Observer {
-            refreshLayout.isRefreshing = false
+
+            if(it.loadedCount == 0){
+                emptyView.visibility = View.VISIBLE
+            }else{
+                emptyView.visibility = View.GONE
+            }
+
             headlineAdapter.submitList(it)
         })
 
-        viewModel.newsHeadlineError.observe(this, Observer {
-            showSnackBar(it)
+        viewModel.newsHeadlineError.observe(this, Observer { msg ->
+            msg?.let {
+                showSnackBar(it)
+            }
+        })
+
+        viewModel.newsLoadingStatus.observe(this, Observer {
+            refreshLayout.isRefreshing = it
         })
     }
-
 }

@@ -102,7 +102,7 @@ class MainActivity : BaseActivity() {
             }
         }
 
-       // setupWorkManagerListener()
+        setupWorkManagerListener()
     }
 
 

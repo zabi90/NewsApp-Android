@@ -13,7 +13,7 @@ abstract class ArticleDao {
 
     @Transaction
     open suspend fun insertArticles(category:String,articles: List<Article>): Array<Long> {
-        //delete(category)
+        delete(category)
         return insertAll(articles)
     }
 
