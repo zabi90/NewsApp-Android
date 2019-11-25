@@ -5,13 +5,10 @@ import androidx.lifecycle.Transformations
 import androidx.lifecycle.viewModelScope
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-
 import com.example.newsapp.base.BaseViewModel
 import com.example.newsapp.models.Article
 import com.example.newsapp.models.Categories
 import com.example.newsapp.repositories.NewsRepository
-
-
 import javax.inject.Inject
 
 class HomeViewModel @Inject constructor(private val newsRepository: NewsRepository) :

@@ -29,6 +29,7 @@ class HeadlineAdapter() : PagedListAdapter<Article, HeadlineAdapter.HeadlineView
 
     override fun onBindViewHolder(holder: HeadlineViewHolder, position: Int) {
 
+
         holder.bindItem(getItem(position))
     }
 
@@ -71,6 +72,7 @@ class HeadlineAdapter() : PagedListAdapter<Article, HeadlineAdapter.HeadlineView
 
             override fun areContentsTheSame(oldArticle: Article,
                                             newArticle: Article) = oldArticle == newArticle
+
         }
     }
 }
