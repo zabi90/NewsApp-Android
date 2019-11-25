@@ -34,6 +34,7 @@ class NewsRepository @Inject constructor(
      */
     fun getArticleFromDatabase(category: String): DataSource.Factory<Int, Article> {
         newsHeadlineError.postValue(null)
+        newsLoadingStatus.postValue(false)
         return appDataBase.articleDao().getArticles(category)
     }
 
