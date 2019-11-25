@@ -11,6 +11,7 @@ interface NewsServices {
     suspend fun getNewsByCategory(
         @Query("category") category: String,
         @Query("pageSize") pageSize: Int = 20,
+        @Query("page") page:Int = 1,
         @Query("country") country: String = "us"
     ): DataResponse
 }

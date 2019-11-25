@@ -1,5 +1,6 @@
 package com.example.newsapp.database
 
+import androidx.paging.DataSource
 import androidx.room.*
 import com.example.newsapp.models.Article
 
@@ -17,7 +18,7 @@ abstract class ArticleDao {
     }
 
     @Query("Select * from article where category = :category")
-    abstract suspend fun getArticles(category:String):List<Article>
+    abstract  fun getArticles(category:String): DataSource.Factory<Int, Article>
 
     @Query("Delete from article where category  = :category ")
     abstract suspend fun delete(category:String)

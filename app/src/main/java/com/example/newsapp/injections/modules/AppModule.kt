@@ -31,7 +31,8 @@ class AppModule constructor(val app: AndroidApp) {
             .setRequiresStorageNotLow(true)
             .build()
 
-        val syncWork = PeriodicWorkRequestBuilder<SyncArticleWorker>(10, TimeUnit.MINUTES)
+        val syncWork = PeriodicWorkRequestBuilder<SyncArticleWorker>(30, TimeUnit.MINUTES)
+            .setInitialDelay(5,TimeUnit.MINUTES)
             .setConstraints(constraints)
             .build()
 

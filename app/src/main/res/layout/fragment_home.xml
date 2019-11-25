@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:paddingTop="@dimen/_45sdp"
     android:clipToPadding="false"
-    tools:context="de.starkling.newsapp.fragments.HomeFragment">
+    tools:context="com.example.newsapp.fragments.HomeFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/refreshLayout"
@@ -19,6 +19,7 @@
             android:layout_height="match_parent" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
-
+    <include
+        android:id="@+id/emptyView"
+        layout="@layout/item_empty"/>
 </FrameLayout>

@@ -13,7 +13,7 @@ open class BaseRepository {
         when (error) {
             is HttpException -> return ApiErrorResponse(error).message
             is SocketTimeoutException -> return "Problem to connect server!"
-            is IOException -> return "Problem to internet connection!"
+            is IOException -> return "You are offline. Please connect to internet."
             is InvalidAuthException -> return error.message?:"Invalid credentials"
         }
 

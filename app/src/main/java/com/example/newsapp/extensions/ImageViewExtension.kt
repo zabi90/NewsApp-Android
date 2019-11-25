@@ -24,8 +24,8 @@ fun ImageView.loadNetworkImage(progressBar: View? = null, url: String) {
     GlideApp.with(this).load(url)
         .diskCacheStrategy(DiskCacheStrategy.ALL)
         .apply(RequestOptions().timeout(60 * 1000))
-        .transition(DrawableTransitionOptions.withCrossFade())
         .error(R.drawable.logo)
+        .placeholder(R.drawable.logo)
         .addListener(object : RequestListener<Drawable> {
 
             override fun onLoadFailed(

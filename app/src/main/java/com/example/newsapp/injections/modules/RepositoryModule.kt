@@ -1,6 +1,5 @@
 package com.example.newsapp.injections.modules
 
-import android.content.Context
 import com.example.newsapp.database.AppDataBase
 import com.example.newsapp.repositories.NewsRepository
 import com.example.newsapp.rest.services.NewsServices
@@ -13,7 +12,7 @@ class RepositoryModule {
 
     @Singleton
     @Provides
-    fun getNewsRepository(@com.example.newsapp.injections.AppContext context: Context, newsServices: NewsServices, dataBase: AppDataBase): NewsRepository {
-        return NewsRepository(context,newsServices,dataBase)
+    fun getNewsRepository( newsServices: NewsServices, dataBase: AppDataBase): NewsRepository {
+        return NewsRepository(newsServices,dataBase)
     }
 }
