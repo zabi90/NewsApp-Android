@@ -6,8 +6,11 @@
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
         <item name="colorAccent">@color/secondaryColor</item>
+        <item name="colorControlHighlight">@color/secondaryLightColor</item>
         <item name="materialButtonStyle">@style/materialButtonStyle</item>
+        <item name="colorControlActivated">@color/secondaryColor</item>
     </style>
+
 
     <style name="materialButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="materialThemeOverlay">@style/ButtonStyleTextColor</item>
@@ -16,4 +19,37 @@
     <style name="ButtonStyleTextColor">
         <item name="android:backgroundTint">@color/secondaryColor</item>
     </style>
+
+    <style name="Headline">
+        <item name="android:fontFamily">@font/merriweather_black_italic</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Headline6
+        </item>
+    </style>
+
+    <style name="Subtitle">
+        <item name="android:fontFamily">@font/merriweather_black_italic</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Subtitle1
+        </item>
+    </style>
+
+    <style name="Body1">
+        <item name="android:fontFamily">@font/libre_franklin</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Body1</item>
+    </style>
+
+    <style name="Overline">
+        <item name="android:fontFamily">@font/libre_franklin_bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Overline</item>
+    </style>
+
+    <style name="Caption">
+        <item name="android:fontFamily">@font/merriweather_italic</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Caption</item>
+    </style>
+
+    <style name="Button">
+        <item name="android:fontFamily">@font/libre_franklin_bold</item>
+        <item name="android:textAppearance">@style/TextAppearance.MaterialComponents.Button</item>
+    </style>
+
 </resources>

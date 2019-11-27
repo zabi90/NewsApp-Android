@@ -7,24 +7,25 @@
     tools:context="com.example.newsapp.fragments.DetailFragment">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:paddingTop="@dimen/_45sdp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:paddingTop="@dimen/_45sdp">
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="0dp"
             android:layout_height="@dimen/_150sdp"
+            android:scaleType="center"
             android:transitionName="imageView"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             tools:ignore="ContentDescription"
-            android:scaleType="center"
             tools:srcCompat="@tools:sample/backgrounds/scenic[15]" />
 
         <TextView
             android:id="@+id/sourceTextView"
+            style="@style/Overline"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
@@ -35,12 +36,12 @@
 
         <TextView
             android:id="@+id/titleTextView"
+            style="@style/Headline"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_14sdp"
             android:layout_marginEnd="@dimen/_14sdp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Large"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/sourceTextView"
@@ -48,12 +49,13 @@
 
         <TextView
             android:id="@+id/descriptionTextView"
+            style="@style/Subtitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="@dimen/_14sdp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
+            android:fontFamily="@font/libre_franklin_medium"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/titleTextView"
@@ -61,17 +63,18 @@
 
         <TextView
             android:id="@+id/authorTextView"
+            style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
             android:layout_marginEnd="24dp"
-            android:textAppearance="@style/TextAppearance.AppCompat.Small"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
             tools:text="By Justin Carissimo and Victoria Albert" />
 
         <TextView
             android:id="@+id/publishDateTextView"
+            style="@style/Caption"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"
@@ -93,6 +96,7 @@
 
         <TextView
             android:id="@+id/contentTextView"
+            style="@style/Body1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_14sdp"

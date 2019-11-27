@@ -8,6 +8,7 @@
         <item name="colorAccent">@color/secondaryColor</item>
         <item name="materialButtonStyle">@style/materialButtonStyle</item>
         <item name="android:windowLightStatusBar">true</item>
+        <item name="colorControlHighlight">@color/secondaryLightColor</item>
     </style>
 
     <style name="materialButtonStyle" parent="Widget.MaterialComponents.Button">

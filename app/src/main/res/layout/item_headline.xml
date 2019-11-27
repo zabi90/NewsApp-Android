@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:selectableItemBackground"
+    android:background="?attr/selectableItemBackground"
     android:orientation="vertical">
 
     <ImageView
@@ -14,8 +14,8 @@
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_14sdp"
-        android:scaleType="center"
         android:background="@color/primaryDarkColor"
+        android:scaleType="center"
         android:transitionName="imageView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,6 +25,7 @@
 
     <TextView
         android:id="@+id/sourceTextView"
+        style="@style/Overline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14sdp"
@@ -35,13 +36,13 @@
 
     <TextView
         android:id="@+id/titleTextView"
+        style="@style/Headline"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14sdp"
         android:layout_marginTop="@dimen/_14sdp"
         android:layout_marginEnd="@dimen/_14sdp"
         android:layout_marginBottom="@dimen/_14sdp"
-        android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -50,6 +51,7 @@
 
     <TextView
         android:id="@+id/publishDateTextView"
+        style="@style/Caption"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/_14sdp"
