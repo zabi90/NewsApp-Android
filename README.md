@@ -5,7 +5,7 @@ NewsApp-Android is a sample project for learning purpose only that fetch news ar
 
 | Light Mode      | Dark Mode      |
 |------------|-------------|
-| <img alt="screenshot" src="/ScreenShots/light_one.png" width="25%" /><img alt="screenshot" src="/ScreenShots/light_two.png" width="25%" /><img alt="screenshot" src="/ScreenShots/light_three.png" width="25%" />| <img alt="screenshot" src="/ScreenShots/dark_one.png" width="25%" /><img alt="screenshot" src="/ScreenShots/dark_two.png" width="25%" /><img alt="screenshot" src="/ScreenShots/dark_three.png" width="25%" />   |
+| <img alt="screenshot" src="/ScreenShots/light_one.png" width="45%" /><img alt="screenshot" src="/ScreenShots/light_two.png" width="45%" /><img alt="screenshot" src="/ScreenShots/light_three.png" width="45%" />| <img alt="screenshot" src="/ScreenShots/dark_one.png" width="45%" /><img alt="screenshot" src="/ScreenShots/dark_two.png" width="45%" /><img alt="screenshot" src="/ScreenShots/dark_three.png" width="45%" />   |
 
 # Features
 
@@ -46,6 +46,4 @@ Dillinger uses a number of open source projects to work properly:
 License
 ----
 
-       **Apache License**
-   Version 2.0, January 2004
-  http://www.apache.org/licenses/
+       Apache License
