@@ -12,6 +12,7 @@ NewsApp-Android is a sample project for learning purpose only that fetch news ar
   - Fetch api from [News API](https://newsapi.org/) using [Retrofit](https://square.github.io/retrofit/) with [coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html)
   - Save fetched data sqlite database using [Room](https://developer.android.com/topic/libraries/architecture/room?gclid=CjwKCAjwo9rtBRAdEiwA_WXcFl0dpqQ4MlZAP9cW7a1tVxWgc2sy3eq5sn26_KpG8dAoRf9G3y1nmBoCmIQQAvD_BwE) persistance
   - Show News article from database first and load from api when not available into database.
+  - Sync News article after 30 minutes using [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager/basics.html))
   - This app is also support dark theme when system setting in Android Q is in dark mode.
 
 
@@ -20,7 +21,7 @@ NewsApp-Android is a sample project for learning purpose only that fetch news ar
 > Search news article.
 > Make news article favourite.
 > Open news article detail in webview. 
-> Share News Article
+> Share News Article.
 > Add Support for Tabs.
 
 
