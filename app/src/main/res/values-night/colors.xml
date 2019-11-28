@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="primaryColor">#202121</color>
+    <color name="primaryLightColor">#202121</color>
+    <color name="primaryDarkColor">#202121</color>
+    <color name="secondaryColor">#6B82B1</color>
+    <color name="secondaryLightColor">#74A3A3A3</color>
+    <color name="secondaryDarkColor">#4a0072</color>
+    <color name="primaryTextColor">#FFFFFF</color>
+    <color name="secondaryTextColor">#AAAAAA</color>
+    <color name="buttonTextColor">#FFFFFF</color>
+    <color name="tintColor">#969799</color>
+</resources>

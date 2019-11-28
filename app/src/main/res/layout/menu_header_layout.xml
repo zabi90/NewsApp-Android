@@ -18,8 +18,8 @@
         tools:ignore="ContentDescription" />
 
     <androidx.appcompat.widget.AppCompatImageView
-        android:layout_marginTop="5dp"
         android:id="@+id/logoImageView"
+        android:layout_gravity="center_vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/logo"

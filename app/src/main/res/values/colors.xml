@@ -7,5 +7,7 @@
     <color name="secondaryLightColor">#ae52d4</color>
     <color name="secondaryDarkColor">#4a0072</color>
     <color name="primaryTextColor">#000000</color>
+    <color name="buttonTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#AAAAAA</color>
+    <color name="tintColor">#000000</color>
 </resources>

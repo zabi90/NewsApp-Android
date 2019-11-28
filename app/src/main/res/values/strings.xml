@@ -13,4 +13,5 @@
     <string name="title_technology">Technology</string>
     <string name="title_front_page">Front Page</string>
     <string name="no_offline_content_available">No offline content available.</string>
+    <string name="text_more">More</string>
 </resources>

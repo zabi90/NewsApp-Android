@@ -63,7 +63,7 @@ class SyncArticleWorker(val context: Context, workerParams: WorkerParameters) :
 
         } catch (error: Throwable) {
             Log.d(TAG,"error : ${error.message}")
-            Result.retry()
+            Result.failure()
         }
     }
 

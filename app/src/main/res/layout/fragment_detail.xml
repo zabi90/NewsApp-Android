@@ -64,11 +64,14 @@
         <TextView
             android:id="@+id/authorTextView"
             style="@style/Caption"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/_16sdp"
-            android:layout_marginEnd="24dp"
+            android:gravity="end"
+            android:layout_marginStart="@dimen/_14sdp"
+            android:layout_marginEnd="@dimen/_14sdp"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/descriptionTextView"
             tools:text="By Justin Carissimo and Victoria Albert" />
 
@@ -109,6 +112,17 @@
             app:layout_constraintTop_toBottomOf="@+id/authorTextView"
             app:layout_constraintVertical_bias="0.0"
             tools:text="content" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="@string/text_more"
+            app:layout_constraintEnd_toEndOf="@+id/contentTextView"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contentTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.core.widget.NestedScrollView>

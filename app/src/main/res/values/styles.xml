@@ -1,7 +1,7 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="BaseAppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/primaryColor</item>
         <item name="colorPrimaryDark">@color/primaryDarkColor</item>
@@ -11,9 +11,11 @@
         <item name="colorControlActivated">@color/secondaryColor</item>
     </style>
 
+    <style name="AppTheme" parent="BaseAppTheme"/>
 
     <style name="materialButtonStyle" parent="Widget.MaterialComponents.Button">
         <item name="materialThemeOverlay">@style/ButtonStyleTextColor</item>
+        <item name="android:textColor">@color/buttonTextColor</item>
     </style>
 
     <style name="ButtonStyleTextColor">
