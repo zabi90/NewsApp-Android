@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingTop="@dimen/_45sdp"
-    android:clipToPadding="false"
+
     tools:context="com.example.newsapp.fragments.HomeFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -14,6 +13,8 @@
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"
+            android:paddingTop="@dimen/_45sdp"
+            android:clipToPadding="false"
             android:scrollbars="vertical"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />

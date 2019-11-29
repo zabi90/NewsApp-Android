@@ -27,15 +27,16 @@
         <com.google.android.material.appbar.MaterialToolbar
             android:id="@+id/toolbar"
             android:layout_width="0dp"
-            android:elevation="3dp"
             android:layout_height="wrap_content"
             android:background="?attr/colorPrimary"
+            android:elevation="3dp"
             android:minHeight="?attr/actionBarSize"
             android:theme="?attr/actionBarTheme"
-            app:logo="@drawable/logo"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:logo="@drawable/logo" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 
