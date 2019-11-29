@@ -3,9 +3,9 @@
     <color name="primaryColor">#fafafa</color>
     <color name="primaryLightColor">#ffffff</color>
     <color name="primaryDarkColor">#c7c7c7</color>
-    <color name="secondaryColor">#7b1fa2</color>
-    <color name="secondaryLightColor">#ae52d4</color>
-    <color name="secondaryDarkColor">#4a0072</color>
+    <color name="secondaryColor">#6B38FB</color>
+    <color name="secondaryLightColor">#806B38FB</color>
+    <color name="secondaryDarkColor">#5628C7</color>
     <color name="primaryTextColor">#000000</color>
     <color name="buttonTextColor">#FFFFFF</color>
     <color name="secondaryTextColor">#AAAAAA</color>
