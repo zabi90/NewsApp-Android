@@ -9,10 +9,10 @@ NewsApp-Android is a sample project for learning purpose only that fetch news ar
 
 # Features
 
-  - Fetch api from [News API](https://newsapi.org/) using [Retrofit](https://square.github.io/retrofit/) with [coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html)
+  - Fetch news article api from [News API](https://newsapi.org/) using [Retrofit](https://square.github.io/retrofit/) with [coroutine](https://kotlinlang.org/docs/reference/coroutines-overview.html)
   - Save fetched data sqlite database using [Room](https://developer.android.com/topic/libraries/architecture/room?gclid=CjwKCAjwo9rtBRAdEiwA_WXcFl0dpqQ4MlZAP9cW7a1tVxWgc2sy3eq5sn26_KpG8dAoRf9G3y1nmBoCmIQQAvD_BwE) persistance
-  - Show News article from database first and load from api when not available into database.
-  - Sync News article after 30 minutes using [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager/basics.html))
+  - Show News articles from database first and load from api when not available into database.
+  - Sync News articles after 30 minutes using [WorkManager](https://developer.android.com/topic/libraries/architecture/workmanager/basics.html))
   - This app is also support dark theme when system setting in Android Q is in dark mode.
 
 
@@ -27,7 +27,7 @@ NewsApp-Android is a sample project for learning purpose only that fetch news ar
 
 ### Libraries
 
-Dillinger uses a number of open source projects to work properly:
+NewsApp-Android uses a number of open source projects to work properly:
 
 * [RetroFit](https://square.github.io/retrofit/) - A type-safe HTTP client for Android and Java
 * [Room](https://developer.android.com/topic/libraries/architecture/room?gclid=CjwKCAjwo9rtBRAdEiwA_WXcFl0dpqQ4MlZAP9cW7a1tVxWgc2sy3eq5sn26_KpG8dAoRf9G3y1nmBoCmIQQAvD_BwE) - The Room persistence library provides an abstraction layer over SQLite to allow for more robust database access while harnessing the full power of SQLite.
@@ -43,6 +43,7 @@ Dillinger uses a number of open source projects to work properly:
 
  - Write Local Tests and Instrument Tests.
  - Crashlytics.
+ - Short Appbar on scrolling.
 
 License
 ----
