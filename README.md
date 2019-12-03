@@ -48,4 +48,4 @@ NewsApp-Android uses a number of open source projects to work properly:
 License
 ----
 
-       Apache License
+       Mit License
